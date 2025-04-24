@@ -1,15 +1,41 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner scn = new Scanner(System.in);
+        Home system = new Home();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        int q = Integer.parseInt(scn.nextLine());
+
+        for (int i = 0; i < q; i++) {
+            String line = scn.nextLine();
+            String[] parts = line.split(" ");
+
+            switch (parts[0]) {
+                case "add_device":
+                    System.out.println(system.addDevice(parts[1], parts[2], parts[3]));
+                    break;
+
+                case "remove_device":
+                    System.out.println(system.removeDevice(parts[1]));
+                    break;
+
+                case "list_devices":
+                    system.listDevices();
+                    break;
+
+                case "add_rule":
+                    System.out.println(system.addRule(parts[1], parts[2], parts[3]));
+                    break;
+
+                case "check_rules":
+                    System.out.println(system.checkRules(parts[1]));
+                    break;
+
+                case "list_rules":
+                    system.listRules();
+                    break;
+            }
         }
     }
 }
